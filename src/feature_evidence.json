@@ -1,0 +1,23 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-ensure-the-project-has-a-clean-production-build-path-frontend-builds-without-development-only-assumptions-and-can-be-served-from-an-ic-assets-canister-deep-links-load-the-spa-correctly",
+      "featureTitle": "Ensure the project has a clean production build path: frontend builds without development-only assumptions, and can be served from an IC assets canister (deep links load the SPA correctly).",
+      "files": [
+        "frontend/public/.ic-assets.json5"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

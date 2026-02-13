@@ -1,2 +1,3 @@
-# valentine-themed-capybara-proposal-page-with-yes-no-interaction
-Exported from Caffeine project: Make the site go live (production deployment on Internet Computer)
+## 
+
+To run app build and run docker image: `docker build -t app . docker run -it --network host app`

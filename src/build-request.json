@@ -1,0 +1,84 @@
+{
+  "kind": "build_request",
+  "title": "Make the site go live (production deployment on Internet Computer)",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Add production deployment documentation that explains exactly how to deploy the app to the Internet Computer mainnet, including: prerequisites (dfx), building the frontend assets, deploying canisters to the `ic` network, and where to find the resulting live URL(s).",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "recent-messages"
+        ],
+        "quotes": [
+          "make the site go live"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A new deployment guide file exists in the repo (e.g., DEPLOYMENT.md or README section) written in English.",
+        "The guide includes step-by-step commands for deploying to mainnet (e.g., `dfx deploy --network ic`) and any required build steps.",
+        "The guide explains how to obtain the live canister URL(s) after deployment (asset canister and, if applicable, backend canister)."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Ensure the project has a clean production build path: frontend builds without development-only assumptions, and can be served from an IC assets canister (deep links load the SPA correctly).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "recent-messages"
+        ],
+        "quotes": [
+          "make the site go live"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A production build of the frontend completes successfully.",
+        "When hosted from the assets canister, loading the root route renders the app successfully.",
+        "Refreshing the page on the app does not return a 404 (SPA routing is compatible with IC asset hosting, even if the app only uses a single route)."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Confirm backend canister deployment readiness: the Motoko canister compiles and deploys to mainnet even if it is currently minimal/empty.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "recent-messages"
+        ],
+        "quotes": [
+          "make the site go live"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The backend canister compiles successfully with `dfx build`.",
+        "Deploying to mainnet does not fail due to missing candid/actor configuration or build errors."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not edit files under frontend/src/components/ui (read-only Shadcn components).",
+    "Do not edit immutable hook/entry files: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx.",
+    "Backend must remain a single Motoko actor in backend/main.mo; only add migration.mo if an upgrade requires state migration."
+  ],
+  "nonGoals": [
+    "Implementing CI/CD pipelines (e.g., GitHub Actions) unless explicitly requested.",
+    "Integrating external hosting providers (AWS/Vercel/Netlify) or non-IC deployment targets.",
+    "Adding new product features unrelated to deployment (e.g., new app screens, auth flows, databases)."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

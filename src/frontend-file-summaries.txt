@@ -1,0 +1,9 @@
+{
+  "frontend/src/App.tsx": "Main Valentine-themed single-page component with state management for initial/rejected/accepted views, displaying cartoon capybara images (including sad capybara for rejected state) at full aspect ratio with contain fit (no cropping) for all states, with celebration burst animation on Yes click.",
+  "frontend/src/main.tsx": "Application entry point that sets up React Query provider and renders the App component without Internet Identity wrapper.",
+  "frontend/src/index.css": "Global styles with warm Valentine-themed OKLCH color palette, gentle-float keyframe animation, full aspect ratio image container with contain fit for all states (no cropping or square constraints), celebration burst animations with falling hearts, and reduced-motion support.",
+  "frontend/tailwind.config.js": "Tailwind configuration with extended theme tokens, custom border radius, and Inter font family for the Valentine-themed design system.",
+  "frontend/src/components/CelebrationBurst.tsx": "Self-contained celebration burst component that displays an animated overlay with falling hearts and a center \"Yes!\" message when the user accepts the Valentine's proposal.",
+  "frontend/public/.ic-assets.json5": "IC assets canister configuration that sets appropriate cache headers for static assets and enables SPA routing by serving index.html for all routes.",
+  "DEPLOYMENT.md": "Comprehensive deployment guide with step-by-step instructions for building and deploying the application to Internet Computer mainnet, including how to obtain live canister URLs and troubleshooting tips."
+}

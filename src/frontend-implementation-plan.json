@@ -1,0 +1,44 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Production deployment readiness for Internet Computer mainnet (frontend-only)",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Add production deployment documentation for deploying to IC mainnet and finding the live URLs",
+      "acceptanceCriteria": [
+        "A new deployment guide file exists in the repo (e.g., DEPLOYMENT.md or README section) written in English.",
+        "The guide includes step-by-step commands for deploying to mainnet (e.g., `dfx deploy --network ic`) and any required build steps.",
+        "The guide explains how to obtain the live canister URL(s) after deployment (asset canister and, if applicable, backend canister)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/DEPLOYMENT.md",
+          "operation": "create",
+          "description": "Create an English deployment guide focused on Internet Computer mainnet deployment: prerequisites (install/configure dfx), how to build the frontend assets for production (using the existing build-template-react/core-infrastructure scripts—Verify the component's usage instructions before implementing.), how to deploy canisters to the `ic` network (include exact `dfx` commands such as building and deploying), and how to derive/find live canister URL(s) after deployment (asset canister URL and backend canister URL if applicable)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Ensure a clean production SPA build that works when hosted from an IC assets canister (deep-link refresh compatible)",
+      "acceptanceCriteria": [
+        "A production build of the frontend completes successfully.",
+        "When hosted from the assets canister, loading the root route renders the app successfully.",
+        "Refreshing the page on the app does not return a 404 (SPA routing is compatible with IC asset hosting, even if the app only uses a single route)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/.ic-assets.json5",
+          "operation": "create",
+          "description": "Add IC assets canister configuration to support SPA deep-link refresh behavior by serving the app shell for unknown paths (fallback to the main HTML). Ensure this is compatible with the existing build-template-react output and IC asset hosting expectations."
+        },
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Verify production-friendly app shell settings for IC asset hosting (e.g., confirm the built app will reference bundled assets correctly and that the HTML can be used as the SPA fallback). Keep changes minimal and aligned with the existing initial-app/build-template-react setup—Verify the component's usage instructions before implementing."
+        }
+      ]
+    }
+  ]
+}

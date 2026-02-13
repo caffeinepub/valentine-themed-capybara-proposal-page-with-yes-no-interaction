@@ -1,0 +1,56 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-13T11:41:33.087Z",
+  "summary": "Diff adds an IC asset canister headers config file and updates two project/meta summary files, but does not provide verifiable deployment documentation, SPA deep-link fallback behavior, or backend deployment readiness changes required by the BuildRequest.",
+  "missing_requirements": [
+    {
+      "id": "REQ-1",
+      "requirement": "Add production deployment documentation explaining how to deploy to IC mainnet (prereqs, build steps, `dfx deploy --network ic`, and how to get live URL(s)).",
+      "reason": "The diff does not show any new or modified deployment guide (e.g., DEPLOYMENT.md/README). The only added functional file is an assets headers config; the mention of DEPLOYMENT.md appears only inside a summary/metadata file, not as an actual file change.",
+      "evidence": [
+        "frontend-file-summaries.txt (mentions DEPLOYMENT.md but no DEPLOYMENT.md file is added/modified in diff list)",
+        "<file-diff> Added files list only includes frontend/public/.ic-assets.json5"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "requirement": "Ensure clean production build path and SPA routing compatibility on IC assets canister (deep links/refresh do not 404).",
+      "reason": "While an IC assets config file was added, its shown content only sets cache/content-type headers and does not demonstrate SPA deep-link fallback (e.g., serving index.html for unknown routes). There are also no build-related config changes shown (vite/webpack/router/base path) to support production builds on IC.",
+      "evidence": [
+        "frontend/public/.ic-assets.json5 (content shows only headers rules; no explicit SPA fallback behavior shown)"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "requirement": "Confirm backend canister deployment readiness (Motoko compiles and deploys to mainnet without candid/config errors).",
+      "reason": "No backend files (e.g., backend/main.mo, dfx.json, canister interface config) are added or modified in the diff, so there is no evidence of ensuring backend build/deploy readiness.",
+      "evidence": [
+        "<file-diff> Modified files list contains no backend/* files",
+        "<file-diff> Added files list contains no backend/* files"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Project metadata/state tracking updates (project_state.json) unrelated to production deployment requirements.",
+      "reason": "The BuildRequest does not request adding or updating internal tracking metadata files; only deployment documentation and build/deploy readiness changes were requested.",
+      "evidence": [
+        "project_state.json"
+      ]
+    },
+    {
+      "description": "Frontend change summaries added/updated in frontend-file-summaries.txt.",
+      "reason": "The BuildRequest does not request adding or updating a frontend file summary document; it is not part of the specified deployment documentation (REQ-1) and does not itself implement deployment/build changes.",
+      "evidence": [
+        "frontend-file-summaries.txt"
+      ]
+    }
+  ],
+  "confidence": 0.72,
+  "changed_files": [
+    "frontend-file-summaries.txt",
+    "frontend/public/.ic-assets.json5",
+    "project_state.json"
+  ]
+}
